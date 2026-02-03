@@ -1,101 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <title>For Astha 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>For Astha 💖</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <style>
-    body {
-      margin: 0;
-      min-height: 100vh;
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #ff9a9e, #fad0c4);
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      overflow: hidden;
-      color: white;
-      text-align: center;
-    }
+<style>
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: 'Segoe UI', sans-serif;
+  background: radial-gradient(circle at top, #2b1055, #000);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  color: white;
+  text-align: center;
+}
 
-    .card {
-      background: rgba(255, 255, 255, 0.2);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 30px rgba(255,255,255,0.4);
-      backdrop-filter: blur(10px);
-      max-width: 90%;
-      animation: fadeIn 2s ease;
-    }
+/* stars */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("https://i.imgur.com/9a3K6QF.png");
+  opacity: 0.5;
+  z-index: 0;
+}
 
-    h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-    }
+.card {
+  position: relative;
+  z-index: 1;
+  background: rgba(255,255,255,0.18);
+  padding: 28px;
+  border-radius: 26px;
+  backdrop-filter: blur(14px);
+  box-shadow: 0 0 40px rgba(255,255,255,0.35);
+  max-width: 92%;
+  animation: fadeIn 2s ease;
+}
 
-    p {
-      font-size: 1.1em;
-      line-height: 1.6;
-    }
+h1 {
+  font-size: 2.6em;
+  margin-bottom: 10px;
+}
 
-    .heart {
-      position: fixed;
-      bottom: -10px;
-      font-size: 20px;
-      animation: floatUp 6s linear infinite;
-      opacity: 0.8;
-    }
+#text {
+  font-size: 1.1em;
+  line-height: 1.7;
+  white-space: pre-line;
+}
 
-    @keyframes floatUp {
-      0% {
-        transform: translateY(0) scale(1);
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-110vh) scale(1.5);
-        opacity: 0;
-      }
-    }
+/* slideshow */
+.slideshow {
+  width: 220px;
+  height: 220px;
+  margin: 15px auto 18px;
+  position: relative;
+}
 
-    @keyframes fadeIn {
-      from { opacity: 0; transform: scale(0.9); }
-      to { opacity: 1; transform: scale(1); }
-    }
-  </style>
+.slide {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 22px;
+  position: absolute;
+  opacity: 0;
+  transition: opacity 1.3s ease;
+  box-shadow: 0 0 22px rgba(255,255,255,0.6);
+}
+
+.slide.active {
+  opacity: 1;
+}
+
+/* hearts */
+.heart {
+  position: fixed;
+  bottom: -10px;
+  font-size: 22px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.85;
+}
+
+@keyframes floatUp {
+  from { transform: translateY(0); opacity: 1; }
+  to { transform: translateY(-120vh); opacity: 0; }
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.9); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+button {
+  margin-top: 12px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: none;
+  background: white;
+  color: #ff5e8e;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.hidden {
+  display: none;
+  margin-top: 12px;
+  font-size: 1em;
+  color: #ffd9ec;
+}
+</style>
 </head>
 
 <body>
 
-  <div class="card">
-    <h1>Astha 💖</h1>
-    <p>
-      Hey bacha,<br><br>
-      It’s been more than a year now,<br>
-      and you still make my days softer,<br>
-      brighter, and warmer. ✨<br><br>
-      This little page is just a reminder<br>
-      that someone out there cares for you<br>
-      more than words can say. 💌<br><br>
-      — from your bache 🥺❤️
-    </p>
+<div class="card">
+  <h1>Astha 💖</h1>
+
+  <div class="slideshow">
+    <img src="https://i.imgur.com/8Km9tLL.jpg" class="slide active">
+    <img src="https://i.imgur.com/5tj6S7Ol.jpg" class="slide">
+    <img src="https://i.imgur.com/9XnJY7V.jpg" class="slide">
   </div>
 
-  <!-- floating hearts -->
-  <script>
-    const hearts = ["💖","💗","💕","💘","❤️"];
+  <p id="text"></p>
 
-    setInterval(() => {
-      const heart = document.createElement("div");
-      heart.className = "heart";
-      heart.innerText = hearts[Math.floor(Math.random() * hearts.length)];
-      heart.style.left = Math.random() * 100 + "vw";
-      heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-      document.body.appendChild(heart);
+  <p id="countdown"></p>
 
-      setTimeout(() => heart.remove(), 7000);
-    }, 400);
-  </script>
+  <button onclick="playMusic()">▶ Play Music</button>
+  <button onclick="reveal()">💌 Tap for Surprise</button>
+
+  <div id="secret" class="hidden">
+    No matter what happens,<br>
+    you’ll always be my favorite person 🥺❤️
+  </div>
+</div>
+
+<audio id="bgm" loop>
+  <source src="https://files.freemusicarchive.org/storage-freemusicarchive-org/music/no_curator/Scott_Holmes/Happy_Music/Scott_Holmes_-_04_-_Happy_Whistle.mp3">
+</audio>
+
+<script>
+/* typing */
+const message = `Hey bacha 💕\n
+It’s been more than a year now,\nand somehow you still make my heart smile.\n
+This little page exists because\nyou matter more than you know.\n
+Happy Birthday in advance 🎂\n19 February is YOUR day.\n
+Forever yours,\n— your bache 🥺❤️`;
+
+let i = 0;
+function typeText() {
+  if (i < message.length) {
+    document.getElementById("text").innerHTML +=
+      message.charAt(i) === "\n" ? "<br>" : message.charAt(i);
+    i++;
+    setTimeout(typeText, 40);
+  }
+}
+typeText();
+
+/* hearts */
+const hearts = ["💖","💕","💗","💘","❤️"];
+setInterval(() => {
+  const h = document.createElement("div");
+  h.className = "heart";
+  h.innerText = hearts[Math.floor(Math.random()*hearts.length)];
+  h.style.left = Math.random()*100 + "vw";
+  h.style.animationDuration = (4 + Math.random()*3) + "s";
+  document.body.appendChild(h);
+  setTimeout(()=>h.remove(),7000);
+}, 400);
+
+/* slideshow */
+const slides = document.querySelectorAll(".slide");
+let current = 0;
+setInterval(() => {
+  slides[current].classList.remove("active");
+  current = (current + 1) % slides.length;
+  slides[current].classList.add("active");
+}, 2500);
+
+/* music */
+function playMusic(){
+  document.getElementById("bgm").play();
+}
+
+/* secret */
+function reveal(){
+  document.getElementById("secret").style.display = "block";
+}
+
+/* birthday countdown */
+const bday = new Date(new Date().getFullYear(), 1, 19).getTime();
+setInterval(() => {
+  const now = new Date().getTime();
+  const diff = bday - now;
+  if (diff > 0) {
+    const d = Math.floor(diff / (1000*60*60*24));
+    document.getElementById("countdown").innerText =
+      `🎂 ${d} days left for your birthday`;
+  } else {
+    document.getElementById("countdown").innerText =
+      "🎉 Happy Birthday Astha 💖";
+  }
+}, 1000);
+</script>
 
 </body>
 </html>
