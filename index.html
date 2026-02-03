@@ -1,156 +1,123 @@
 
   
-  <!DOCTYPE html>
+ <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Astha 💖</title>
+<title>Astha — Little Memories</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <style>
-* {
-  box-sizing: border-box;
-}
-
 body {
   margin: 0;
-  font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(135deg, #ff9a9e, #fad0c4, #fbc2eb);
-  min-height: 100vh;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
-  color: white;
+  font-family: Georgia, 'Times New Roman', serif;
+  background: #faf7f2;
+  color: #333;
 }
 
-.card {
-  background: rgba(255,255,255,0.15);
-  backdrop-filter: blur(12px);
-  border-radius: 20px;
-  padding: 25px;
-  max-width: 360px;
-  width: 90%;
-  text-align: center;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+.container {
+  max-width: 700px;
+  margin: auto;
+  padding: 30px 20px 60px;
 }
 
 h1 {
-  font-size: 2.5em;
-  margin-bottom: 10px;
+  text-align: center;
+  font-weight: normal;
+  margin-bottom: 5px;
 }
 
-p {
-  font-size: 1em;
-  line-height: 1.6;
-  margin: 12px 0;
+.subtitle {
+  text-align: center;
+  font-size: 0.9em;
+  color: #777;
+  margin-bottom: 40px;
 }
 
-.buttons {
-  margin-top: 20px;
-  display: flex;
-  gap: 10px;
-  justify-content: center;
-  flex-wrap: wrap;
+.memory {
+  margin-bottom: 40px;
 }
 
-button {
-  border: none;
-  padding: 12px 18px;
-  border-radius: 30px;
-  font-size: 0.95em;
-  cursor: pointer;
+.date {
+  font-size: 0.85em;
+  color: #999;
+  margin-bottom: 6px;
+}
+
+.card {
   background: white;
-  color: #ff5c8a;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.06);
 }
 
-button:hover {
-  transform: scale(1.05);
+.card img {
+  width: 100%;
+  border-radius: 10px;
+  margin-bottom: 15px;
 }
 
-.heart {
-  position: absolute;
-  bottom: -20px;
-  font-size: 20px;
-  animation: float 6s linear infinite;
-  opacity: 0.8;
+.card p {
+  font-size: 1em;
+  line-height: 1.7;
+  margin: 0;
 }
 
-@keyframes float {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 1;
-  }
-  100% {
-    transform: translateY(-110vh) scale(1.5);
-    opacity: 0;
-  }
+.footer {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 0.9em;
+  color: #666;
 }
 </style>
 </head>
 
 <body>
 
-<div class="card">
-  <h1>Astha 💖</h1>
+<div class="container">
+  <h1>Astha</h1>
+  <div class="subtitle">some small memories, quietly kept</div>
 
-  <p>Hey bacha 💕</p>
+  <div class="memory">
+    <div class="date">More than a year ago</div>
+    <div class="card">
+      <img src="https://picsum.photos/700/400?random=1" alt="">
+      <p>
+        I don’t remember the exact day we started talking seriously.
+        I just remember that at some point, you became part of my normal.
+      </p>
+    </div>
+  </div>
 
-  <p>
-    It’s been more than a year now,<br>
-    and somehow you still make my heart smile.
-  </p>
+  <div class="memory">
+    <div class="date">Somewhere in between</div>
+    <div class="card">
+      <img src="https://picsum.photos/700/400?random=2" alt="">
+      <p>
+        We’ve had good days, stupid arguments, silence, laughter —
+        but somehow, you stayed. That matters more than big promises.
+      </p>
+    </div>
+  </div>
 
-  <p id="countdown">🎂 calculating days...</p>
+  <div class="memory">
+    <div class="date">19 February</div>
+    <div class="card">
+      <img src="https://picsum.photos/700/400?random=3" alt="">
+      <p>
+        I don’t know what the future looks like.
+        I just know that on your birthday, I wanted to leave something honest behind.
+        No decorations. Just truth.
+      </p>
+    </div>
+  </div>
 
-  <div class="buttons">
-    <button onclick="playMusic()">▶ Play Music</button>
-    <button onclick="showSurprise()">💌 Tap for Surprise</button>
+  <div class="footer">
+    — from bache
   </div>
 </div>
 
-<audio id="music" loop>
-  <source src="https://cdn.pixabay.com/download/audio/2022/03/15/audio_0f8b9b7a87.mp3" type="audio/mpeg">
-</audio>
-
-<script>
-/* floating hearts */
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerHTML = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (4 + Math.random() * 3) + "s";
-  document.body.appendChild(heart);
-  setTimeout(() => heart.remove(), 6000);
-}
-setInterval(createHeart, 400);
-
-/* music */
-function playMusic() {
-  document.getElementById("music").play();
-}
-
-/* surprise */
-function showSurprise() {
-  alert("You are my favorite feeling, always. 💕");
-}
-
-/* birthday countdown */
-const birthday = new Date();
-birthday.setDate(birthday.getDate() + 14);
-
-function updateCountdown() {
-  const now = new Date();
-  const diff = birthday - now;
-  const days = Math.ceil(diff / (1000 * 60 * 60 * 24));
-  document.getElementById("countdown").innerText =
-    "🎂 " + days + " days left for your birthday";
-}
-updateCountdown();
-</script>
-
 </body>
 </html>
+
+
